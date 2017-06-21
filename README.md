@@ -15,11 +15,8 @@ The Voicemail, plugin for WordPress includes the following files:
 
 ## Installation
 
-
-
 ## License
 
-______
 ## Used libraries
 
 * [Recorderjs|https://github.com/mattdiamond/Recorderjs]
