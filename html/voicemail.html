@@ -1,0 +1,355 @@
+<style type='text/css'>
+	div#voicemail > div {
+		display: block;
+		float: left;
+		width: 100%;
+	}
+
+	div#voicemail #tips li {
+		font-size: small;
+	}
+
+	div#voicemail div#voicemail_record div:first-child, div#voicemail div#voicemail_recordingInProgress div:first-child {
+		align-items: center; /* For vertical alignment */
+		display: flex;
+   		justify-content: center; /* For horizontal alignment */
+	}
+
+	div#voicemail div#voicemail_record div button {
+		border: 0;
+		border-radius: 3%;
+		display: block;
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
+
+	div#voicemail div#voicemail_record div button.active {
+		background-color: Black;
+		color: White;
+	}
+
+	div#voicemail div#voicemail_record div button.active:hover {
+		background: #007acc;
+	}
+
+	div#voicemail div#voicemail_record div button.inprogress:first-child {
+		background-color: White;
+		color: Red;
+		opacity: 1;
+	}
+
+	div#voicemail div#voicemail_record div button.inprogress:last-child {
+		background-color: White;
+		color: Red;
+		opacity: 1;
+	}
+
+	div#voicemail div#voicemail_record div button.disabled {
+		background-color: DimGrey;
+		color: LightGrey;
+	}
+
+	div#voicemail div#voicemail_record div button:first-child {
+		width: 15%;
+	}
+
+	div#voicemail div#voicemail_record div button:last-child {
+		margin-left: 1%;
+		margin-top: 0.5%;
+		width: 7.5%;
+	}
+
+	div#voicemail div#voicemail_record div button span {
+		float: left;
+		font-size: 71%;
+		font-weight: normal;
+		line-height: 1;
+		padding: 2%;
+	}
+
+	div#voicemail div#voicemail_record div button span {
+		width: 100%;
+	}
+
+	div#voicemail div#voicemail_record div button:first-child span:first-child {
+		font-size: 1000%;
+		font-weight: bold;
+		line-height: 0.3;
+		padding-bottom: 10%;
+	}
+
+	div#voicemail div#voicemail_record div button:first-child span:last-child {
+		padding-bottom: 5%;
+	}
+
+	div#voicemail div#voicemail_record div button:last-child span:first-child {
+		font-size: 300%;
+	    font-weight: bold;
+	    line-height: 0.65;
+	    padding-bottom: 6%;
+		padding-top: 3%;
+	}
+
+	div#voicemail div#voicemail_record div button:last-child span:last-child {
+		padding-bottom: 5%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail #recordingslist audio {
+		display: block; margin-top: 5px;
+	}
+
+	div#voicemail .buttonAsText {
+		background:none;
+	    border:none;
+		color: black;
+		font-size: small;
+		font-weight: normal;
+	    margin:0;
+		opacity: 0.8;
+	    padding:0;
+		text-decoration: underline;
+		text-transform: none;
+	}
+
+	div#voicemail .buttonAsText:hover {
+		background: none;
+		opacity: 0.5;
+	}
+
+	div#voicemail div#voicemail_recordingInProgress div:first-child div:first-child {
+		background-color: black;
+		border-radius: 100%;
+		margin: auto;
+		width: 28%;
+	}
+
+	div#voicemail div#voicemail_recordingInProgress div:first-child div:first-child p {
+		color: white;
+		line-height: normal;
+		margin: 0;
+		padding: 1%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form input[type="text"] {
+	    width: 31%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form input[type="email"] {
+	    width: 61%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form > div {
+		display: block;
+		margin-bottom: 1%;
+		width: 100%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form div label#voicemail_email_validation_message {
+		display: inline-block;
+		color: Red;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form div div.g-recaptcha {
+		display: block;
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form div label#voicemail_recaptcha_validation_message {
+		display: inline-block;
+		color: Red;
+		padding-left: 0.5%;
+		padding-top: 1.5%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form div:last-child {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail form#voicemail_form div:last-child button:last-child {
+		padding-left: 1%;
+	}
+
+	div#voicemail div#voicemail_recordedVoicemail div form#voicemail_form div audio.draftVoicemail {
+		width: 46%;
+	}
+</style>
+<script src='https://www.google.com/recaptcha/api.js?hl=fr async defer'></script>
+<div id="voicemail">
+	<div id="voicemail_introduction">
+		<h1>
+			Soumettre une question
+		</h1>
+		<p style="margin: 0;">Merci infiniment pour votre question ! Voici quelques trucs pour qu'elle ait un maximum de chance d'être traitée dans le show :</p>
+		<ul id="tips">
+			<li>
+				Essayez de la faire tenir en moins d'une minute (d'ailleurs, si vous avez plus d'une question, n'hésitez pas à enregistrer plusieurs)
+			</li>
+			<li>
+				Présentez-vous au début de votre message, par exemple : <i>“Salut Léo, c'est Marie. Je suis Scrum Master chez Orange. Ma question est…”</i> (si vous ne souhaitez pas mentionner votre nom c'est correct aussi bien sûr)
+			</li>
+			<li>
+				Enfin, notez qu'en soumettant votre message vocal, vous m'autorisez de fait à le partager dans le podcast, et que la seule compensation que vous recevrez est que votre question sera possiblement traitée
+			</li>
+			<li>
+				Notez que seul votre prénom sera cité à l'antenne, tant pour des raisons pratiques de fluidité du propos que pour protéger votre identité
+			</li>
+		</ul>
+		<p>Comment soumettre une question ? C'est très simple : cliquez sur "ENREGISTRER MA QUESTION" ci-dessous et suivez les étapes qui se suivent, c'est très rapide et pratique.<p>
+		<p style="font-size:small;">Si vous préférez soumettre votre question par courriel, envoyez-la à <a href="mailto:question@lepodcastagile.fr" target="_blank">question@lepodcastagile.fr</a> (notez néanmoins que les questions par courriel ont moins de chance d'être traitées). Soyez sûr de me notifier que vous souhaitez rester anonyme en mentionnant ANONYME pour être sûr(e) que je ne mentionne pas votre nom.</p>
+		<div id="audioDisabled" style="display: none;">
+			<p>Malheureusement il n'est pas possible d'enregistrer une question avec votre navigateur actuel.</p>
+			<ul>
+				<li>
+					Mettez à jour votre navigateur. Pour installer un navigateur récent, cliquez <a href="https://browsehappy.com/?locale=fr" target="_blank">ici</a>
+				</li>
+				<li>
+					Donnez l'autorisation d'utiliser votre micro en haut à droite
+				</li>
+			</ul>
+			Google Chrome : https://support.google.com/chrome/answer/2693767?hl=fr<figure>
+			Mozilla Firefox : https://support.mozilla.org/fr/kb/voir-details-techniques-page#w_utiliser-le-micro
+			</figure>
+		</div>
+	</div>
+	<br style="clear: both;" />
+	<div id="voicemail_record">
+		<div>
+			<button id="voicemail_start_recording" onclick="startRecording(this);" title="Enregistrer ma question">
+				<span>•</span>
+				<span>1. Enregistrer ma question</span>
+			</button>
+			<button id="voicemail_stop_recording" onclick="stopRecording(this);" title="Stop" disabled>
+				<span>■</span>
+				<span>Stop</span>
+			</button>
+		</div>
+	</div>
+	<br style="clear: both;" />
+	<div id="voicemail_recordingInProgress" style="display: none;">
+		<div>
+			<div title="Enregistrement en cours, c'est à vous !">
+				<center>
+					<p style="padding-top: 2%;">
+						<small>
+							C'est à vous !
+							<br />
+							Parlez librement et
+							<br />
+							cliquez sur "STOP" à la fin
+						</small>
+					</p>
+					<div>
+						<img id="recordingInProgressGif" style="width: 60%;" alt="Enregistrement en cours, c'est à vous !" />
+					</div>
+					<p style="padding-bottom: 2%;">
+						<small>
+							<span id="minutes">00</span>:<span id="seconds">00</span>
+						</small>
+					</p>
+				</center>
+			</div>
+		</div>
+	</div>
+	<br style="clear: both;" />
+	<div id="voicemail_recordedVoicemail" style="display: none;">
+		<div>
+			<form id="voicemail_form">
+				<div>
+					<label for="voicemail_audio" style="float: left; width: 54%;">
+						2. Réécoutez votre message puis complétez ci-dessous :
+					</label>
+					<audio id="voicemail_audio" class="draftVoicemail" controls="true" src=""></audio>
+				</div>
+				<div>
+					<label for="voicemail_name">
+						Nom :
+					</label>
+					<input id="voicemail_name" name="voicemail_name" type="text" form="voicemail_form" placeholder="ex : Jean(ne)" onfocus="this.placeholder=''" onblur="this.placeholder='ex : Jean(ne)'">
+					<label for="voicemail_name">
+						<small>
+							(seul votre prénom sera cité dans le show)
+						</small>
+					</label>
+				</div>
+				<div>
+					<label for="voicemail_origin">
+						Lieu de résidence (pays, ville) :
+					</label>
+					<input id="voicemail_origin" name="voicemail_origin" type="text" form="voicemail_form" placeholder="ex : Paris" onfocus="this.placeholder=''" onblur="this.placeholder='ex : Paris'">
+				</div>
+				<div>
+					<label for="voicemail_email">
+						Courriel :
+					</label>
+					<input id="voicemail_email" name="voicemail_email" type="email" form="voicemail_form" placeholder="ex : jeandeparis@gmail.com" onfocus="this.placeholder=''" onblur="this.placeholder='ex : jeandeparis@gmail.com'">
+					<label id="voicemail_email_validation_message" for="voicemail_email" style="visibility: visible;">
+						<small>
+							*
+						</small>
+					</label>
+				</div>
+				<div>
+					<input id="voicemail_newsletter_hidden" name="voicemail_newsletter" type="hidden" value="1"  form="voicemail_form" onchange="displayEmailValidation(this);"><input id="voicemail_newsletter" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value;this.previousSibling.onchange();" value="1" checked>
+					<label for="voicemail_newsletter">
+						J'en profite pour m'inscrire à l'infolettre et ainsi recevoir les nouveaux épisodes avant tout le monde
+					</label>
+				</div>
+				<div>
+					<p style="font-size: 70%;">
+						Vos données resteront <span style="text-decoration: underline;">confidentielles</span> (et modifiables à tout moment) et ne seront <span style="text-decoration: underline;">jamais</span> partagées à des tiers (je déteste le spam autant que vous !)
+					</p>
+				</div>
+				<div>
+					<label for="voicemail_recaptcha" style="display: block; float: left; padding-right: 1%; padding-top: 1.5%;">
+						Pour des raisons de sécurité :
+					</label>
+					<div id="voicemail_recaptcha" class="g-recaptcha" data-sitekey="6LeYZx4UAAAAAAkSpAOmRzzJ_aBEAh7BI6N78dHg"></div>
+					<label id="voicemail_recaptcha_validation_message" style="visibility: hidden;">
+						<small>
+							*
+						</small>
+					</label>
+				 </div>
+				<div>
+					<button id="voicemail_sendRecord" type="submit" title="3. Je soumets ma question">
+						3. Je soumets ma question
+					</button>
+					<button class="buttonAsText" type="button" onclick="cancelAndRecordANewVoicemail();" title="Annuler et enregistrer un nouveau message">
+						Annuler et enregistrer un nouveau message
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br style="clear: both;" />
+	<div id="voicemail_thanks" style="display: none;">
+   		<div>
+			<p>Merci infiniment pour votre message !</p>
+			<p>Bien qu'il soit impossible pour moi de répondre à toutes les questions, j'apprécie que vous preniez le temps d'en soumettre une. Espérons que je traiterai la vôtre prochainement !</p>
+			<p style="margin: 0;">En attendez, suivez Le Podcast Agile sur :</p>
+			<ul>
+				<li>
+					<a href="https://www.facebook.com/lepodcastagile" target="_blank">Facebook</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/lepodcastagile" target="_blank">Twitter</a>
+				</li>
+				<li>
+					<a href="https://www.linkedin.com/company/11044894/" target="_blank">LinkedIn</a>
+				</li>
+			</ul>
+			<p><small>(plugin Voicemail pour WordPress, à forker sur <a href="https://github.com/leodavesne/Voicemail" target="_blank">GitHub</a>)</small></p>
+		</div>
+	</div>
+	<div id="logs" style="visibility: hidden;">
+   		<div>
+			<h2>Log</h2>
+			<pre id="log"></pre>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,174 @@
+<style type='text/css'>
+	div#voiceMessage #tips li {
+		font-size: small;
+	}
+
+	div#voiceMessage #record, div#voiceMessage #recordingInProgress {
+		text-align: center;
+	}
+
+	div#voiceMessage div#voiceMessages #recordingslist audio {
+		display: block; margin-top: 5px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist {
+		list-style: none;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li {
+		margin-bottom: 1%;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li audio {
+		float: left;
+		margin-right: 5px;
+		width: 35%;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li input, div#voiceMessage div#voiceMessages ul#recordingslist li button {
+		margin-right: 5px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li input[type="button"] {
+		text-decoration: underline;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li div {
+		margin-top: 10px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li div label {
+		margin-bottom: 1%;
+		margin-right: 5px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li div input {
+		float: left;
+    	margin-right: 5px;
+    	margin-top: 1px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li div input[type="checkbox"] {
+		float: left;
+    	margin-right: 5px;
+    	margin-top: 8px;
+	}
+
+	div#voiceMessage div#voiceMessages ul#recordingslist li div label {
+		float: left;
+	}
+
+	div#voiceMessage .buttonAsText {
+		background:none;
+	    border:none;
+		color: black;
+		font-size: small;
+		font-weight: normal;
+	    margin:0;
+		opacity: 0.8;
+	    padding:0;
+		text-decoration: underline;
+		text-transform: none;
+	}
+
+	div#voiceMessage .buttonAsText:hover {
+		background: none;
+	}
+
+	div#voiceMessage div.divGif {
+		background-color: black;
+		margin: auto;
+		width: 42%;
+	}
+
+	div#voiceMessage div.divGif p {
+		color: white;
+		line-height: normal;
+		margin: 0;
+		padding: 1%;
+	}
+</style>
+<script src='https://www.google.com/recaptcha/api.js?hl=fr async defer'></script>
+<div id="voiceMessage">
+	<div class="divGif" style="display: none;">
+		<center>
+			<p><small>Oh non !</small></p>
+			<div>
+				<img id="disabledMicrophoneGif" />
+			</div>
+			<div>
+				<img id="poweredByGiphy" />
+			</div>
+		</center>
+	</div>
+	<h1>Soumettre une question</h1>
+	<p style="margin: 0;">Merci infiniment pour votre question ! Voici quelques trucs pour qu'elle ait un maximum de chance d'être traitée dans le show :</p>
+	<ul id="tips">
+		<li>
+			Essayez de la faire tenir en moins d'une minute (d'ailleurs, si vous avez plus d'une question, n'hésitez pas à enregistrer plusieurs)
+		</li>
+		<li>
+			Présentez-vous au début de votre message, par exemple : <i>“Salut Léo, c'est Marie. Je suis Scrum Master chez Orange. Ma question est…”</i> (si vous ne souhaitez pas mentionner votre nom c'est correct aussi bien sûr)
+		</li>
+		<li>
+			Enfin, notez qu'en soumettant votre message vocal, vous m'autorisez de fait à le partager dans le podcast, et que la seule compensation que vous recevrez est que votre question sera possiblement traitée
+		</li>
+	</ul>
+	<p>Comment soumettre une question ? C'est très simple : cliquez sur "ENREGISTRER MA QUESTION" ci-dessous et suivez les étapes qui se suivent, c'est très rapide et pratique.<p>
+	<p style="font-size:small;">Si vous préférez soumettre votre question par courriel, envoyez-la à <a href="mailto:question@lepodcastagile.fr" target="_blank">question@lepodcastagile.fr</a> (notez néanmoins que les questions par courriel ont moins de chance d'être traitées). Soyez sûr de me notifier que vous souhaitez rester anonyme en mentionnant ANONYME pour être sûr(e) que je ne mentionne pas votre nom.</p>
+	<div id="audioDisabled" style="display: none;">
+		<p>Malheureusement il n'est pas possible d'enregistrer une question avec votre navigateur actuel.</p>
+		<ul>
+			<li>
+				Mettez à jour votre navigateur. Pour installer un navigateur récent, cliquez <a href="https://browsehappy.com/?locale=fr" target="_blank">ici</a>
+			</li>
+			<li>
+				Donnez l'autorisation d'utiliser votre micro en haut à droite
+			</li>
+		</ul>
+		Google Chrome : https://support.google.com/chrome/answer/2693767?hl=fr<figure>
+		Mozilla Firefox : https://support.mozilla.org/fr/kb/voir-details-techniques-page#w_utiliser-le-micro
+		</figure>
+	</div>
+	<div id="record">
+		<button onclick="startRecording(this);">Enregistrer ma question</button>
+		<button onclick="stopRecording(this);" disabled>Stop</button>
+	</div>
+	<br style="clear: both;"/>
+	<div id="voiceMessages" style="display: none;">
+		<h2>Messages vocaux</h2>
+		<ul id="recordingslist"></ul>
+	</div>
+	<div id="thanks" style="display: none;">
+		<p>Merci infiniment pour votre message !</p>
+		<p>Bien qu'il soit impossible pour moi de répondre à toutes les questions, j'apprécie que vous preniez le temps d'en soumettre une. Espérons que je traiterai la vôtre prochainement !</p>
+		<p style="margin: 0;">En attendez, suivez Le Podcast Agile sur :</p>
+		<ul>
+			<li>
+				<a href="https://www.facebook.com/lepodcastagile" target="_blank">Facebook</a>
+			</li>
+			<li>
+				<a href="https://twitter.com/lepodcastagile" target="_blank">Twitter</a>
+			</li>
+			<li>
+				<a href="https://www.linkedin.com/company/11044894/" target="_blank">LinkedIn</a>
+			</li>
+		</ul>
+		<p><small>(plugin Voicemail pour WordPress, à forker sur <a href="https://github.com/leodavesne/Voicemail" target="_blank">GitHub</a>)</small></p>
+	</div>
+	<div id="recordingInProgress" class="divGif" style="display: none;">
+		<center>
+			<p><small>Enregistrement en cours, c'est à vous ! Parlez simplement dans votre micro et appuyez sur "STOP" lorsque vous avez terminé.</small></p>
+			<div>
+				<img id="recordingInProgressGif" />
+			</div>
+			<div>
+				<img id="poweredByGiphy" />
+			</div>
+		</center>
+	</div>
+	<div id="logs" style="visibility: hidden;">
+		<h2>Log</h2>
+		<pre id="log"></pre>
+	</div>
+</div>

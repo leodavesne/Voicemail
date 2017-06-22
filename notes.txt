@@ -1,0 +1,139 @@
+170425______
+vraiment cool cette librairie, la manière dont le mec la présente : https://howlerjs.com
+
+autre librairie qui pourrait m'aider à afficher la vague de la voix en live : https://github.com/collab-project/videojs-record
+
+version mobile en V2 !
+
+valider email SI checkbox newsletter cochée
+et valider le recaptcha évidemment
+
+ET valider côté serveur bien sûr !
+
+label xx-small pour expliquer (champs notamment, dont celui de recaptcha)
+voire des hints (en V2 ?)
+
+afficher le nombre de secondes d'enregistrement en cours
+un compte en fait, comme SpeakPipe
+
+blob variable globale (tout simplement ?) ?
+
+je n'ai pas les effets de jQuery
+jQuery inclus dans WordPress right ?
+plugin avec ou sans effets ?
+
+1 SEUL appel à l'action à chaque étape, sur chaque écancelAndRecordANewVoicemail
+
+TOUT le plugin dans une pop-in ?
+iframe ?
+
+1. j'enregistre
+(1.2. je stoppe)
+(1.3. je réécoute)
+2. j'envoie
+
+avant je pensais :
+1. j'enregistre
+2. je stoppe en fait 3. (voire 2. car le stop fait partie de l'enregistrement)
+3. je réécoute
+4. je sélectionne (PAS un gros bouton ?), en fait non, je ne peux que refaire !
+5. j'envoie
+mais j'ai simplifié, plus clair !
+l'objectif étant de récupérer des emails PUIS des messages vocaux
+170424______
+Vraiment se connecter à Giphy ? Risque d'avoir des gifs pas supers :/
+
+boutons rond carré flèche et pause doivent être COHÉRENTS
+
+1. j'enregistre
+(2. je stoppe)
+2. je remplis (3.)
+3. j'envoie (4.)
+
+rajouter une mention "pour me contacter" dans le message de remerciment avec mon email pour faire le lien, un suivi
+un complément à la question si nécessaire
+
+"vous ne voulez pas, n'aimez pas parler au micro ?"
+
+vous souhaitez me contacter pour échanger sur votre question ?
+
+pas 2 options pour chaque enregistrement
+-> juste 1 ! recommencer ou remplir le formulaire ci-dessous
+
+10 gifs "en dur" plutôt ?
+
+• avec "Recommencer l'enregistrement", hum ou pas car ça "attirerait" ?
+
+l'idée n'est pas tellement d'avoir des questions, l'objectif est de récupérer des emails !!!
+et d'inscrire les gens à l'infolettre !!
+
+Objectifs :
+1. Augmenter le nombre d'inscrits à l'infolettre
+2. Récupérer des questions "audios" pour enrichir le contenu des épisodes
+(répondre à une question APRÈS le contenu principal de l'épisode ?? hum intéressant !)
+
+mettre voicemail_ devant TOUS les ids !
+
+" ou ' ???
+être cohérent PARTOUT
+idem pour CamelCase et underscore_case
+respecter chaque syntaxe de chaque langage !
+
+tout valider aussi côté serveur hein !
+cas lorsqu'on clique trop vite et qu'on n'enregistre rien
+
+réinitialiser tous les champs lorsqu'on annule !
+﻿170423______
+README:
+* Liens http://jsfiddle.net pour illustrer comment illustrer le plugin ?
+* Besoins de base pour utiliser un plugin WordPress
+* Besoins : HTTPS
+
+Librairies : https://github.com/Nycto/PicoModal
+
+Extraire tout le style du JavaScript
+
+Valide le W3C d'HTML5 : https://validator.w3.org/nu/#textarea
+170422______
+Utiliser agilezurich.com (pour tester avec HTTPS notamment)
+1 unique formulaire, sinon ça fait qu'on s'y perd ?
+Utiliser htmlstorage pour garder l'email et le prénom et ainsi pré-charger si on veut réenregistrer un message ? le mettre dans l'htmlstorage de session ?
+comme ça si je reviens plusieurs jours après, je peux le réutiliser ?
+1 unique form dans un template html ? externe à injecter avec son JavaScript ?
+offrir la possibilité d'enregistrer un nouveau message dans le message de remerciements
+
+Faire une demande à Giphy pour utiliser leur API en production : http://api.giphy.com/submit
+
+Librairies : reCAPTCHA
+
+Travail en cours pour intégrer reCAPTCHA :
+* https://codeforgeek.com/2014/12/add-google-recaptcha-wordpress/
+* https://www.google.com/recaptcha/admin#site/337524260?setup
+* https://developers.google.com/recaptcha/docs/invisible
+170421______
+Pour requêter une webcam ou un microphone avec JavaScript : https://patdunn.net/2015/04/27/how-to-request-a-webcam-and-microphone-using-javascript/
+Capturer audio et vidéo avec HTML5 : https://www.html5rocks.com/en/tutorials/getusermedia/intro/
+170420______
+Pour configurer hMailServer : https://www.hmailserver.com/documentation/latest/?page=basic_configuration
+170417______
+Recherches en cours pour afficher un shortcode dans la description d'une catégorie :
+* -site:wordpress.org/plugins wordpress plugin shortcode not working in category description
+* -site:wordpress.org/plugins wordpress add widget in category description
+170415______
+The Complete Guide to Creating Symbolic Links (aka Symlinks) on Windows: https://www.howtogeek.com/howto/16226/complete-guide-to-symbolic-links-symlinks-on-windows-or-linux/
+    mklink /J "C:\Users\leo_000\Documents\Bitbucket\VirginWordPress\wp-content\plugins\VoiceMessage" "C:\Users\leo_000\Documents\Bitbucket\VoiceMessage"
+
+Linked projects:
+* https://github.com/mattdiamond/Recorderjs
+* https://github.com/cwilso/AudioRecorder
+* https://github.com/kumar-parth/wpvr-recorder
+* https://github.com/mpeshev/DX-Plugin-Base
+* https://github.com/subins2000/Francium-voice
+* https://github.com/muaz-khan/RecordRTC/
+* https://gist.github.com/nealrs/28dbfe2c74dfdde26a30
+* https://github.com/Giphy/GiphyAPI
+
+Questions intéressantes :
+* http://stackoverflow.com/questions/19015555/pass-blob-through-ajax-to-generate-a-file
+
+Since Chrome version 47, Voice Recording works only on HTTPS sites. You can see the demo on HTTPS

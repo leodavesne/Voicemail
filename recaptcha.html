@@ -1,0 +1,79 @@
+<!--
+<html>
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script>
+       function onSubmit(token) {
+         document.getElementById("demo-form").submit();
+       }
+     </script>
+  </head>
+  <body>
+    <form id='demo-form' action="?" method="POST">
+      <button class="g-recaptcha" data-sitekey="6LckNh4UAAAAAN_QgryUqQH7dUuF0RO8KZmceCX0" data-callback='onSubmit'>Submit</button>
+      <br/>
+    </form>
+  </body>
+</html>
+-->
+<html>
+  <head>
+      <script>
+        onload = function() {
+            var recaptchaDiv = document.createElement("div");
+            recaptchaDiv.setAttribute("id", "recaptcha");
+            recaptchaDiv.setAttribute("class", "g-recaptcha");
+            recaptchaDiv.setAttribute("data-sitekey", "6LckNh4UAAAAAN_QgryUqQH7dUuF0RO8KZmceCX0");
+            // recaptchaDiv.setAttribute("data-callback", "recaptchaCallback(this)");
+            recaptchaDiv.setAttribute("data-callback", "recaptchaCallback");
+            recaptchaDiv.setAttribute("data-size", "invisible");
+
+            var launchRecaptchaButton = document.createElement("button");
+            launchRecaptchaButton.setAttribute("id", "randomId-" + Math.floor((Math.random() * 1000) + 1));
+            launchRecaptchaButton.innerHTML = "Launch Recaptcha!";
+            launchRecaptchaButton.onclick = function() {
+                grecaptcha.execute();
+            };
+
+            var submitButton = document.createElement("button");
+            submitButton.setAttribute("id", "randomId-" + Math.floor((Math.random() * 1000) + 1));
+            submitButton.innerHTML = "Submit Button";
+
+            document.body.children[0].appendChild(recaptchaDiv);
+            document.body.children[0].appendChild(launchRecaptchaButton);
+            document.body.children[0].appendChild(submitButton);
+        };
+
+        // function recaptchaCallback(currentElement) {
+        function recaptchaCallback() {
+            console.log("success!");
+            getNextElement(currentElement).click();
+        }
+
+        function getNextElement(element) {
+            // var element = document.getElementById(elementId);
+            children = element.parentNode.children;
+            len = children.length;
+            ind = [].indexOf.call(children, element);
+            // Previous element
+            // prevElement = children[ind === 0 ? 0 : ind - 1];
+            // Next element
+            nextElement = children[ind === len ? len : ind + 1];
+            return nextElement;
+        }
+
+        var onloadCallback = function() {
+            grecaptcha.render("submit", {
+                "sitekey" : "6LckNh4UAAAAAN_QgryUqQH7dUuF0RO8KZmceCX0",
+                "callback" : recaptchaCallback
+            });
+        };
+      </script>
+  </head>
+  <body>
+      <div>
+      </div>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+  </body>
+</html>
