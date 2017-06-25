@@ -1,5 +1,5 @@
 function __log(e, data) {
-    log.innerHTML += "\n" + e + " " + (data || '');
+    // log.innerHTML += "\n" + e + " " + (data || '');
 }
 
 var audio_context;
@@ -255,7 +255,7 @@ window.onload = function init() {
       __log("No live audio input: " + e);
     });
 
-    document.getElementById("voicemail_sendRecord").onclick = validateAndSendVoicemail;
+    // document.getElementById("voicemail_sendRecord").onclick = validateAndSendVoicemail;
 };
 
 function displayEmailValidation(hiddenCheckbox) {

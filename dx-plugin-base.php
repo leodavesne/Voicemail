@@ -178,8 +178,8 @@ class DX_Plugin_Base {
 	    wp_localize_script("voice", "variables", $data);
 		*/
 
-		wp_enqueue_script("picoModal", plugins_url("/js/picoModal-3.0.0.min.js", __FILE__ ));
-	    wp_localize_script("picoModal");
+		// wp_enqueue_script("picoModal", plugins_url("/js/picoModal-3.0.0.min.js", __FILE__ ));
+	    // wp_localize_script("picoModal");
 
 		$data = array(
 			'ajaxurl' => plugins_url('getAudio.php', __FILE__ ),
