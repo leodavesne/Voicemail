@@ -20,7 +20,7 @@ if ($is_secured) {
     if (isset($_FILES["question"]) and !$_FILES["question"]["error"]) {
         $current_time = date("Y-m-d_H-i-s");
         $callback_message .= logInfo("Question received");
-        $voice_message_name = "VoiceMessage_" . $current_time . "_" . rand(1, 1000000) . ".wav";
+        $voice_message_name = "Voicemail_" . $current_time . "_" . rand(1, 1000000) . ".wav";
 
         try {
             move_uploaded_file($_FILES["question"]["tmp_name"], "wav/" . $voice_message_name);
