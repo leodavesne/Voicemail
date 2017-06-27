@@ -1,16 +1,17 @@
 <?php
 
-$callback_message = "Reply from the server: ";
+$_GLOBALS["callback_message"] = "Reply from the server: ";
+
 $is_secured = false;
 
 include_once('settings.php');
 include_once('functions.php');
 
 if (!isset($_POST["g-recaptcha-response"])) {
-    $callback_message .= logInfo("reCAPTCHA is empy");
+    $_GLOBALS["callback_message"] .= logInfo("reCAPTCHA is empy");
 }
 else if (!isValid($_POST["g-recaptcha-response"])) {
-    $callback_message .= logInfo("reCAPTCHA response is wrong");
+    $_GLOBALS["callback_message"] .= logInfo("reCAPTCHA response is wrong");
 }
 else {
     $is_secured = true;
@@ -19,15 +20,15 @@ else {
 if ($is_secured) {
     if (isset($_FILES["question"]) and !$_FILES["question"]["error"]) {
         $current_time = date("Y-m-d_H-i-s");
-        $callback_message .= logInfo("Question received");
+        $_GLOBALS["callback_message"] .= logInfo("Question received");
         $voice_message_name = "Voicemail_" . $current_time . "_" . rand(1, 1000000) . ".wav";
 
         try {
             move_uploaded_file($_FILES["question"]["tmp_name"], "wav/" . $voice_message_name);
 
-            $callback_message .= logInfo($voice_message_name . " properly saved");
+            $_GLOBALS["callback_message"] .= logInfo($voice_message_name . " properly saved");
         } catch (Exception $e) {
-            $callback_message .= logInfo("ERROR:" . $e);
+            $_GLOBALS["callback_message"] .= logInfo("ERROR:" . $e);
         }
 
         try {
@@ -54,19 +55,19 @@ if ($is_secured) {
 
             sendEmail($mailto, $subject, $message, $file, $voice_message_name);
 
-            $callback_message .= logInfo($voice_message_name . " let by " . $name . " (" . $email . ")");
+            $_GLOBALS["callback_message"] .= logInfo($voice_message_name . " let by " . $name . " (" . $email . ")");
         } catch (Exception $e) {
-            $callback_message .= logInfo("ERROR:" . $e);
+            $_GLOBALS["callback_message"] .= logInfo("ERROR:" . $e);
         }
     }
     else {
-        $callback_message .= logInfo("No voicemail received");
+        $_GLOBALS["callback_message"] .= logInfo("No voicemail received");
     }
 }
 else {
-    $callback_message .= logInfo("NOT secured");
+    $_GLOBALS["callback_message"] .= logInfo("NOT secured");
 }
 
-echo $callback_message;
+echo $_GLOBALS["callback_message"];
 
 ?>

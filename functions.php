@@ -90,9 +90,9 @@ function sendEmail($mailto, $subject, $message, $single_attachment, $file_name) 
 
     // Send the email
     if (mail($mailto, $subject, $body, $headers)) {
-        $callback_message .= logInfo("Email send... OK");
+        $_GLOBALS["callback_message"] .= logInfo("Email send... OK");
     } else {
-        $callback_message .= logInfo("Email send... ERROR");
+        $_GLOBALS["callback_message"] .= logInfo("Email send... ERROR");
     }
 }
 
