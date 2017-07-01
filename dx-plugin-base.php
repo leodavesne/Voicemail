@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Voicemail
  * Description: A WordPress plugin to let your audience record messages and ask questions directly on your website
- * Plugin URI: http://leodavesne.net/voicemail
+ * Plugin URI: http://leodavesne.net/voicemail-wordpress-plugin
  * Author: leodavesne
  * Author URI: http://leodavesne.net
  * Version: 0.1
