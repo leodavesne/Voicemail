@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: DX Plugin Base
- * Description: A plugin framework for building new WordPress plugins reusing the accepted APIs and best practices
- * Plugin URI: http://example.org/
- * Author: nofearinc
- * Author URI: http://devwp.eu/
- * Version: 1.6
- * Text Domain: dx-sample-plugin
+ * Plugin Name: Voicemail
+ * Description: A WordPress plugin to let your audience record messages and ask questions directly on your website
+ * Plugin URI: http://leodavesne.net/voicemail
+ * Author: leodavesne
+ * Author URI: http://leodavesne.net
+ * Version: 0.1
+ * Text Domain: voicemail-plugin
  * License: GPL2
 
  Copyright 2011 mpeshev (email : mpeshev AT devrix DOT com)
@@ -26,29 +26,22 @@
  */
 
 /**
- * Get some constants ready for paths when your plugin grows
- *
+ * Constants
  */
 
-define( 'DXP_VERSION', '1.6' );
-define( 'DXP_PATH', dirname( __FILE__ ) );
-define( 'DXP_PATH_INCLUDES', dirname( __FILE__ ) . '/inc' );
-define( 'DXP_FOLDER', basename( DXP_PATH ) );
-define( 'DXP_URL', plugins_url() . '/' . DXP_FOLDER );
-define( 'DXP_URL_INCLUDES', DXP_URL . '/inc' );
-
+define('DXP_VERSION', '0.1');
+define('DXP_PATH', dirname( __FILE__ ));
+define('DXP_PATH_INCLUDES', dirname( __FILE__ ) . '/inc');
+define('DXP_FOLDER', basename( DXP_PATH ));
+define('DXP_URL', plugins_url() . '/' . DXP_FOLDER);
+define('DXP_URL_INCLUDES', DXP_URL . '/inc');
 
 /**
- *
- * The plugin base class - the root of all WP goods!
- *
- * @author nofearinc
- *
+ * The plugin base class
  */
 class DX_Plugin_Base {
 
 	/**
-	 *
 	 * Assign everything as a call from within the constructor
 	 */
 	public function __construct() {
@@ -103,14 +96,11 @@ class DX_Plugin_Base {
  		add_action( 'wp_ajax_store_ajax_value', array( $this, 'store_ajax_value' ) );
  		add_action( 'wp_ajax_fetch_ajax_url_http', array( $this, 'fetch_ajax_url_http' ) );
 
-
 		add_action( 'wp_ajax_my_action', 'my_action_callback' );
 		add_action( 'wp_ajax_nopriv_my_action', 'my_action_callback' );
 
-
 		add_action('wp_footer', 'insert_my_footer');
 	}
-
 
 /*
 	public function insert_my_footer() {
