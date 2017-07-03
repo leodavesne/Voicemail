@@ -47,7 +47,7 @@ if ($is_secured) {
             $path = "wav";
             $file = $path . "/" . $filename;
 
-            $mailto = EMAIL_VOICEMAILS_TO;
+            $mailto = VOI_EMAIL_VOICEMAILS_TO;
             $subject = "New Voicemail by " . $name . " (" . $email . ")!";
             $message = $name . " (" . $email . ") let you a new voicemail: " . $voice_message_name . "!";
             $message .= "\r\nOrigin: " . $origin;

@@ -2,8 +2,8 @@
 
 function isValid($google_recaptcha_client_side_response) {
     try {
-        $url = GOOGLE_RECAPTCHA_VERIFY_API;
-        $data = ['secret'   => GOOGLE_RECAPTCHA_SERVER_SIDE_SECRET,
+        $url = VOI_GOOGLE_RECAPTCHA_VERIFY_API;
+        $data = ['secret'   => VOI_GOOGLE_RECAPTCHA_SERVER_SIDE_SECRET,
                  'response' => $google_recaptcha_client_side_response,
                  'remoteip' => getUserIP()];
 

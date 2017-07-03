@@ -99,7 +99,7 @@ class VO_Plugin_Base {
 			'imgBaseUrl' => plugins_url('/img/', __FILE__ )
 		);
 
-		wp_enqueue_script("recorder", plugins_url("/projects/Recorderjs/dist/recorder.js", __FILE__ ));
+		wp_enqueue_script("recorder", plugins_url("/js/Recorderjs/dist/recorder.js", __FILE__ ));
 	    wp_localize_script("recorder", "variables", $data);
 
 		wp_enqueue_script("voicemail", plugins_url("/js/voicemail.js", __FILE__ ));
@@ -207,9 +207,12 @@ class VO_Plugin_Base {
 			// Read the database record if we've saved that before
 			$vo_test_input = get_post_meta( $post->ID, 'vo_test_input', true );
 		}
+
 		?>
+
 		<label for="vo-test-input"><?php _e( 'Test Custom Field', 'vobase' ); ?></label>
 		<input type="text" id="vo-test-input" name="vo_test_input" value="<?php echo $vo_test_input; ?>" />
+
 		<?php
 	}
 
